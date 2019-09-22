@@ -2,9 +2,9 @@
  * Copyright (c) 2019. Shallin Ris
  */
 
-package com.bhhc.shallinris.dao;
+package com.bhhc.shallinris.repositories;
 
-import com.bhhc.shallinris.objects.Answer;
+import com.bhhc.shallinris.models.Answer;
 import org.springframework.data.repository.CrudRepository;
 
 /**

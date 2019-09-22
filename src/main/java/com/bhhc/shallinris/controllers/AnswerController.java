@@ -4,14 +4,13 @@
 
 package com.bhhc.shallinris.controllers;
 
-import com.bhhc.shallinris.dao.AnswerRepository;
-import com.bhhc.shallinris.objects.Answer;
+import com.bhhc.shallinris.repositories.AnswerRepository;
+import com.bhhc.shallinris.models.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * The Answer Controller allows the app to handle HTTP requests. It contains POST, PUT and DELETE as well as GET
- * endpoints
+ * The Answer Controller handles the answers endpoints of the api
  */
 
 @RestController
@@ -76,7 +75,6 @@ public class AnswerController {
      *
      * @param id the id of the answer to be deleted
      */
-    //todo: maybe add status for all of these
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
     public @ResponseBody
     void deleteAnswer(@PathVariable Integer id) {

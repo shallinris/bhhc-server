@@ -1,7 +1,7 @@
 package com.bhhc.shallinris;
 
-import com.bhhc.shallinris.dao.AnswerRepository;
-import com.bhhc.shallinris.objects.Answer;
+import com.bhhc.shallinris.repositories.AnswerRepository;
+import com.bhhc.shallinris.models.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

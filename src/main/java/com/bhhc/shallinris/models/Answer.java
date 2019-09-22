@@ -2,13 +2,14 @@
  * Copyright (c) 2019. Shallin Ris
  */
 
-package com.bhhc.shallinris.objects;
+package com.bhhc.shallinris.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
 
@@ -20,21 +21,12 @@ import javax.validation.constraints.Size;
 @Table(name = "ANSWERS")
 public class Answer implements Cloneable {
 
-    /**
-     * Defines the maximum value for an answer id
-     */
-    public static final int MAX_ID = 5000;
-
-    /**
-     * Defines the max length for answer text
-     */
-    public static final short MAX_TEXT_LENGTH = 6000;
-
     @Id
     @GeneratedValue
     @Column(name = "ID")
+    @Max(value=5000, message="ID should not be greater than 5000")
     private int id;
-    @Size(max=400)
+    @Size(max=5000)
     private String text;
 
     /* Provides a default constructor for answers */
@@ -77,15 +69,10 @@ public class Answer implements Cloneable {
     /**
      * Sets the answer id and returns an answer for call chaining
      *
-     * @param id The id value (up to ~32k values)
+     * @param id The id value (up to ~5000)
      * @return The Answer
      */
     public Answer setId(int id) {
-
-        if (id < 0 || id > MAX_ID) {
-            throw new IllegalArgumentException("The id must be between 0 and " + MAX_ID);
-        }
-
         this.id = id;
         return this;
     }
@@ -111,11 +98,6 @@ public class Answer implements Cloneable {
         if (text == null || text.isEmpty()) {
             throw new IllegalArgumentException("Answer text is required.");
         }
-
-        if (text.length() >= MAX_TEXT_LENGTH) {
-            throw new IllegalArgumentException("Answer text length must be less than " + MAX_TEXT_LENGTH);
-        }
-
         this.text = text;
         return this;
     }

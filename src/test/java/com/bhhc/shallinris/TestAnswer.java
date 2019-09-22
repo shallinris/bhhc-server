@@ -4,13 +4,18 @@
 
 package com.bhhc.shallinris;
 
-import com.bhhc.shallinris.dao.AnswerRepository;
-import com.bhhc.shallinris.objects.Answer;
+import com.bhhc.shallinris.repositories.AnswerRepository;
+import com.bhhc.shallinris.models.Answer;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.validation.*;
+
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -23,8 +28,15 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class TestAnswer {
 
+    private static Validator validator;
     @Autowired
     private AnswerRepository answerRep;
+
+    @BeforeClass
+    public static void setUp() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
 
     /**
      * Create answer tests the save functionality
@@ -32,7 +44,7 @@ public class TestAnswer {
     @Test
     public void createAnswer() {
         try {
-            Answer answer = new Answer(0, "hello");
+            Answer answer = new Answer(1, "hello");
             answer = answerRep.save(answer);
             assertNotNull(answerRep.findById(answer.getId()));
         } catch (Exception e) {
@@ -60,21 +72,15 @@ public class TestAnswer {
     }
 
     /**
-     * Test set invalid id negative tests that the id field cannot be set to a negative value
+     * Test set invalid id too large tests that the id field cannot be set to a value larger than the
+     * max value specified in the answer class
      */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetInvalidIdNegative() {
-        Answer answer = new Answer();
-        answer.setId(-1);
-    }
-
-    /**
-     * Test set invalid id too large tests that the id field cannot be set to a value larger than the max id
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetInvalidIdTooLarge() {
-        Answer answer = new Answer();
-        answer.setId(5001);
+    @Test
+    public void testShouldDetectInvalidId() {
+        Answer answer = new Answer(5001, "hi");
+        Set<ConstraintViolation<Answer>> violations
+                = validator.validate(answer);
+        assertEquals(violations.size(), 1);
     }
 
     /**
@@ -83,7 +89,7 @@ public class TestAnswer {
     @Test
     public void updateAnswer() {
         try {
-            Answer answer = new Answer(0, "hey");
+            Answer answer = new Answer(1, "hey");
             answer = answerRep.save(answer);
             Answer toUpdate = answerRep.findById(answer.getId());
             Answer temp = (Answer) toUpdate.clone();
@@ -103,7 +109,7 @@ public class TestAnswer {
     @Test
     public void deleteAnswer() {
         try {
-            Answer answer = new Answer(0, "hello");
+            Answer answer = new Answer(1, "hello");
             answerRep.save(answer);
             answerRep.delete(answer);
             Answer afterDelete = answerRep.findById(answer.getId());
