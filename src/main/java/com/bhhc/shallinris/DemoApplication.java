@@ -28,7 +28,7 @@ public class DemoApplication {
     @PostConstruct
     public void init() {
         answerRep.save(new Answer(1, "First, I deeply respect and appreciate Warren Buffett’s investing philosophy and philanthropic work. I believe the philosophy of a company’s leader permeates the company, and as an employee, I would feel pride in my work knowing the overarching principles at any subsidiary of Warren Buffett’s would be non-predatory, and embody integrity, professionalism and sound ethics. "));
-        answerRep.save(new Answer(2, "Second, it is crucial to me to work for a company which holds itself to the highest professional standards in its course of work. Berkshire Hathaway is consistently awarded the highest ratings among insurance carriers, and that is an indication to me that I will be proud to come to work everyday.   "));
+        answerRep.save(new Answer(2, "Second, it is crucial to me to work for a company which holds itself to the highest professional standards in its course of work. Berkshire Hathaway is consistently awarded the highest ratings among insurance carriers, and that is an indication to me that I will be proud to come to work every day.   "));
         answerRep.save(new Answer(3, "Finally, it is my understanding, verified by the reviews of former employees, that Berkshire Hathaway truly cares for its employees and strives to retain quality people by fostering their professional development while ensuring a positive work experience. "));
     }
 }
