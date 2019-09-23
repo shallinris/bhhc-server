@@ -27,12 +27,8 @@ public class DemoApplication {
      */
     @PostConstruct
     public void init() {
-        answerRep.save(new Answer(1, "His philosophy behind investing as well as his philanthropic tendencies. " +
-                "He, along with Bill Gates, are the most charitable billionaires, and I believe that a company owners philosophy seeps down to the " +
-                "company. It would make me proud to work at a company that is owned by warren buffet"));
-        answerRep.save(new Answer(2, "I want to work at a company that is a brand name and does its job well, " +
-                "and BHHC does/is just this. In its chosen markets, BHHC was awarded A++ A.M. Best rating, the highest rating " +
-                "they award insurance carriers. I also like working on products that have tangible positive impacts on other people "));
-        answerRep.save(new Answer(3, "Studies show, and I know from personal experience, that employees are more loyal to and work harder for their company when they are treated well and taken care of by it. BHHC takes great care of their employees in the form of solid benefit packages as well as workers comp. They also treat their employees well because they understand the importance of this in retaining good people"));
+        answerRep.save(new Answer(1, "First, I deeply respect and appreciate Warren Buffet’s investing philosophy and philanthropic work. I believe the philosophy of a company’s leader permeates the company, and as an employee, I would feel pride in my work knowing the overarching principles at any subsidiary of Warren Buffet’s would be non-predatory, and embody integrity, professionalism and sound ethics. "));
+        answerRep.save(new Answer(2, "Second, I want to work at a company that is respected because it does its job well. In its chosen markets, BHHC has been awarded the highest rating for insurance carriers by A.M.Best. "));
+        answerRep.save(new Answer(3, "Finally, studies show, and I know from personal experience, that employees are more loyal to and work harder for their company when they are well-treated and taken care of. According to Glassdoor and other reviewers,  BHHC takes great care of their employees in terms of benefits and employee support. They also treat their employees well because they understand the importance of this in retaining good people. "));
     }
 }
